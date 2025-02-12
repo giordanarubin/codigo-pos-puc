@@ -1,0 +1,3 @@
+[submodule "03-devops-basico/conversao-temperatura"]
+	path = 03-devops-basico/conversao-temperatura
+	url = https://github.com/giordanarubin/conversao-temperatura
