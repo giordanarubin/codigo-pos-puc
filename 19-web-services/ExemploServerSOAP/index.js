@@ -1,11 +1,12 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+const express = require('express');
+const bodyParser = require('body-parser');
 const soap = require('soap');
-const app = express()
+const app = express();
+const port = 8001;
 
 var myservice = {
-    ws: {
-        calc: {
+    ws: {//service name
+        calc: {//port name
             somar : function(args) {
                 var n = 1*args.a + 1*args.b;
                 return { sumres : n };
@@ -24,10 +25,11 @@ var xml = require('fs').readFileSync('wscalc1.wsdl', 'utf8');
 
 //body parser middleware are supported (optional)
 app.use(bodyParser.raw({type: function(){return true;}, limit: '5mb'}));
-app.listen(8001, function(){
+
+app.listen(port, function(){
     //Note: /wsdl route will be handled by soap module
     //and all other routes & middleware will continue to work
     soap.listen(app, '/wscalc1', myservice, xml, function(){
-        console.log('server initialized');
+        console.log('server initialized port ' + port);
     });
 });

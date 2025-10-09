@@ -1,14 +1,17 @@
 var soap = require('soap');
 var url = 'http://localhost:8001/wscalc1?wsdl';
 
+//cliente que consome o serviço definido em ExemploServerSOAP, rodando em servidor local
 soap.createClient(url, function(err, client) {
     if (err) throw err;
-    //console.log(client.describe().ws.calc);
-    client.multiplicar({a: 4,b: 3},function(err,res){
+
+    console.log(client.describe().ws.calc);
+
+    client.multiplicar({a: 4,b: 3},function(err, res){
         if (err) throw err;
         console.log(res);
     });
-    client.somar({a: 4,b: 3},function(err,res){
+    client.somar({a: 4,b: 3},function(err, res){
         if (err) throw err;
         console.log(res);
     });
